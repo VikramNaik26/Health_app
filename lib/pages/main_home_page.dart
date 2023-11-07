@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:health_app/pages/home_page.dart';
-import 'package:health_app/widgets/app_text.dart';
 import 'package:health_app/widgets/header_with_profile.dart';
+import 'package:health_app/widgets/health_card.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -13,66 +12,106 @@ class MainPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: appBar(),
-        body: Column(
+        body: mainHomeBody(size),
+      ),
+    );
+  }
+
+  SingleChildScrollView mainHomeBody(Size size) {
+    return SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
           children: [
             HeaderWithProfile(size: size),
             const SizedBox(
               height: 10,
             ),
-            Row(
-              children: [
-                HealthCard(size: size),
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      HealthCard(
+                        size: size,
+                        title: 'Heart',
+                        textColor: Colors.white,
+                        iconPath: 'assets/icons/duotone.svg',
+                        readings: '105',
+                        unit: 'bpm',
+                        borderColor: Colors.black,
+                        backgroundColor: const Color(0xff5142AB),
+                        mainIconPath: 'assets/icons/vector.svg',
+                        // mainIconWidth: size.width * .4,
+                      ),
+                      HealthCard(
+                        size: size,
+                        title: 'Water',
+                        iconPath: 'assets/icons/Water.svg',
+                        mainIconPath: 'assets/icons/water iluss.svg',
+                        readings: '1.0',
+                        unit: 'liters',
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        children: [
+                          HealthCard(
+                            size: size,
+                            title: 'Walk',
+                            iconPath: 'assets/icons/walk.svg',
+                            mainIconPath: 'assets/icons/Graph.svg',
+                            height: size.height * .25,
+                            isReadingsCenter: true,
+                            readings: '5460',
+                            unit: 'steps',
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          HealthCard(
+                            size: size,
+                            title: 'Sleep',
+                            iconPath: 'assets/icons/Bed.svg',
+                            height: size.height * .15,
+                            readings: '06:32',
+                            unit: 'hours',
+                          ),
+                        ],
+                      ),
+                      HealthCard(
+                        size: size,
+                        title: 'Calories',
+                        iconPath: 'assets/icons/Calories.svg',
+                        height: size.height * 0.40 + 20,
+                        mainIconPath: 'assets/icons/Line.svg',
+                        readings: '540',
+                        unit: 'kcal',
+                        linearGradient: const LinearGradient(
+                          begin:
+                              Alignment.topCenter, // Starting from the left
+                          end: Alignment.bottomCenter, // Ending at the right
+                          colors: [
+                            Colors.white,
+                            Color.fromARGB(255, 229, 233, 248),
+                          ], // Color stops
+                          stops: [0.0, 1.0819], // Color stops positions
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class HealthCard extends StatelessWidget {
-  const HealthCard({
-    super.key,
-    required this.size,
-  });
-
-  final Size size;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20),
-      width: size.width * .4,
-      height: size.height * .3,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: const Color(0xff5142AB),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 12.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const AppText(text: 'Heart'),
-                SvgPicture.asset(
-                  'assets/icons/duotone.svg',
-                )
-              ],
-            ),
-          ),
-          SvgPicture.asset('assets/icons/vector.svg', width: size.width * .4),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 12.0),
-            child: AppText(text: '105  bmp'),
-          )
-        ],
-      ),
-    );
+      );
   }
 }
