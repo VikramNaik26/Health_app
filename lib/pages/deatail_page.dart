@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:health_app/pages/home_page.dart';
 import 'package:health_app/widgets/app_large_text.dart';
 import 'package:health_app/widgets/app_text.dart';
+import 'package:health_app/widgets/calories_card.dart';
 
 class DeatailPage extends StatefulWidget {
   const DeatailPage({super.key});
@@ -12,6 +13,10 @@ class DeatailPage extends StatefulWidget {
 }
 
 class _DeatailPageState extends State<DeatailPage> {
+  bool isVisible = false;
+  final String toggleUicon = 'assets/icons/upArrow.svg';
+  final String toggleDicon = 'assets/icons/downArrow.svg';
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -21,6 +26,34 @@ class _DeatailPageState extends State<DeatailPage> {
         children: [
           detailsPageHeader(),
           caloriesGraph(size),
+          Container(
+            margin: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 10,
+            ),
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                AppText(
+                  text: 'Workouts',
+                  color: Color(0xff061941),
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                ),
+                AppText(
+                  text: 'Show all',
+                  color: Color(0xff5142AB),
+                  fontSize: 14,
+                ),
+              ],
+            ),
+          ),
+          const CaloriesCard(
+            activity: 'Outdoor Run',
+            distance: '1,31',
+            distanceUnit: 'km',
+            calories: '140',
+          ),
         ],
       ),
     );
@@ -68,7 +101,7 @@ class _DeatailPageState extends State<DeatailPage> {
                       'assets/icons/Circle.svg',
                     ),
                     const AppText(
-                      text: '8:20 Am',
+                      text: '8:20 am',
                       color: Color(0xff5142AB),
                       fontSize: 14,
                     ),

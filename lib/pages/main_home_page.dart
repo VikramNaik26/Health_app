@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:health_app/pages/deatail_page.dart';
 import 'package:health_app/pages/home_page.dart';
+import 'package:health_app/pages/profile_page.dart';
 import 'package:health_app/widgets/header_with_profile.dart';
 import 'package:health_app/widgets/health_card.dart';
 
@@ -21,6 +22,15 @@ class _MainPageState extends State<MainPage> {
         appBar: appBar(),
         body: mainHomeBody(size),
         bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 0,
+          onTap: (index) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ProfilePage(),
+              ),
+            );
+          },
           type: BottomNavigationBarType.fixed,
           selectedFontSize: 0,
           unselectedFontSize: 0,

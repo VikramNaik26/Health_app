@@ -27,6 +27,14 @@ class SaveButton extends StatelessWidget {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
+            boxShadow: const [
+              BoxShadow(
+                blurRadius: 22,
+                spreadRadius: 0,
+                offset: Offset(0, 10),
+                color: Color.fromARGB(100, 149, 173, 254),
+              ),
+            ],
           ),
           child: const AppLargeText(
             text: 'Save Changes',

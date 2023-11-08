@@ -45,7 +45,9 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               child: IconButton(
                 icon: const Icon(Icons.chevron_left),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
             ),
             userProfileIcon(),
@@ -95,12 +97,16 @@ class _ProfilePageState extends State<ProfilePage> {
           text: 'Vikram Naik',
           fontSize: 24,
         ),
+        SizedBox(
+          height: 5,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AppText(
               text: 'AGE: 19',
               fontSize: 11,
+              color: Colors.black54,
             ),
             SizedBox(
               width: 10,
@@ -108,6 +114,7 @@ class _ProfilePageState extends State<ProfilePage> {
             AppText(
               text: 'GENDER: MALE',
               fontSize: 11,
+              color: Colors.black54,
             ),
           ],
         ),
