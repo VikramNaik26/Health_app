@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:health_app/pages/main_home_page.dart';
 import 'package:health_app/widgets/app_large_text.dart';
 import 'package:health_app/widgets/app_text.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -35,7 +42,14 @@ class MyHomePage extends StatelessWidget {
           ),
           SizedBox(height: size.height * 0.15),
           FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const MainPage(),
+                ),
+              );
+            },
             child: const Icon(
               Icons.chevron_right,
               size: 38,
@@ -93,4 +107,3 @@ AppBar appBar() {
     ],
   );
 }
-

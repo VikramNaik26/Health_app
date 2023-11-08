@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_app/pages/deatail_page.dart';
 import 'package:health_app/pages/home_page.dart';
 import 'package:health_app/pages/main_home_page.dart';
 
@@ -18,10 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: const MainPage(),
-
+      home: const MyHomePage(),
     );
   }
 }
-
-

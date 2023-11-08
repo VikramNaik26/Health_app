@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:health_app/pages/deatail_page.dart';
 import 'package:health_app/pages/home_page.dart';
 import 'package:health_app/widgets/header_with_profile.dart';
 import 'package:health_app/widgets/health_card.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -120,22 +126,32 @@ class MainPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    HealthCard(
-                      size: size,
-                      title: 'Calories',
-                      iconPath: 'assets/icons/Calories.svg',
-                      height: size.height * 0.40 + 20,
-                      mainIconPath: 'assets/icons/Line.svg',
-                      readings: '540',
-                      unit: 'kcal',
-                      linearGradient: const LinearGradient(
-                        begin: Alignment.topCenter, // Starting from the left
-                        end: Alignment.bottomCenter, // Ending at the right
-                        colors: [
-                          Colors.white,
-                          Color.fromARGB(255, 229, 233, 248),
-                        ], // Color stops
-                        stops: [0.0, 1.0819], // Color stops positions
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const DeatailPage(),
+                          ),
+                        );
+                      },
+                      child: HealthCard(
+                        size: size,
+                        title: 'Calories',
+                        iconPath: 'assets/icons/Calories.svg',
+                        height: size.height * 0.40 + 20,
+                        mainIconPath: 'assets/icons/Line.svg',
+                        readings: '540',
+                        unit: 'kcal',
+                        linearGradient: const LinearGradient(
+                          begin: Alignment.topCenter, // Starting from the left
+                          end: Alignment.bottomCenter, // Ending at the right
+                          colors: [
+                            Colors.white,
+                            Color.fromARGB(255, 229, 233, 248),
+                          ], // Color stops
+                          stops: [0.0, 1.0819], // Color stops positions
+                        ),
                       ),
                     ),
                   ],
