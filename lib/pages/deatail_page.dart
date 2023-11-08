@@ -54,8 +54,8 @@ class _DeatailPageState extends State<DeatailPage> {
                 width: size.width,
               ),
               Positioned(
-                top: 1,
-                left: size.width * .22,
+                top: 0,
+                left: size.width * .2,
                 child: SizedBox(
                   height: 450,
                   child: Column(children: [

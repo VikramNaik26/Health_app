@@ -26,6 +26,8 @@ class _MainPageState extends State<MainPage> {
           unselectedFontSize: 0,
           showSelectedLabels: false,
           showUnselectedLabels: false,
+          selectedItemColor: const Color(0xff53668E),
+          unselectedItemColor: Colors.grey.withOpacity(.5),
           items: [
             BottomNavigationBarItem(
               icon: SvgPicture.asset('assets/icons/Home.svg'),
