@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:health_app/pages/home_page.dart';
+import 'package:health_app/user_info.dart';
 import 'package:health_app/widgets/app_large_text.dart';
 import 'package:health_app/widgets/app_text.dart';
 import 'package:health_app/widgets/save_button.dart';
@@ -14,16 +15,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  var userInfo = {
-    'Name': 'Vikram Naik',
-    'Date of Birth': '26/03/2004',
-    'Gender': 'Male',
-    'Body Weight': '...',
-    'Body Height': '...',
-    'Wake up time': '...',
-    'Bed Time': '...',
-  };
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -70,7 +61,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     indX: index,
                     label: userInfo.keys.elementAt(index),
                     hintText: userInfo.values.elementAt(index),
-                    userInfo: userInfo,
+                    // userInfo: userInfo,
                   );
                 },
                 separatorBuilder: (context, index) => const SizedBox(

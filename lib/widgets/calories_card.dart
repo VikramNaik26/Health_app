@@ -32,7 +32,7 @@ class _CaloriesCardState extends State<CaloriesCard> {
         Container(
           margin: const EdgeInsets.symmetric(
             horizontal: 20,
-          vertical: 16,
+            vertical: 16,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,26 +50,26 @@ class _CaloriesCardState extends State<CaloriesCard> {
                   const SizedBox(
                     width: 10,
                   ),
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppText(
-                        text: 'Outdoor Run',
-                        color: Color(0xff53668E),
+                        text: widget.activity,
+                        color: const Color(0xff53668E),
                         fontSize: 14,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
                         children: [
                           AppText(
-                            text: '1,31',
-                            color: Color(0xff53668E),
+                            text: widget.distance,
+                            color: const Color(0xff53668E),
                           ),
                           AppText(
-                            text: 'km',
-                            color: Color(0xff9DA4B4),
+                            text: widget.distanceUnit,
+                            color: const Color(0xff9DA4B4),
                             fontSize: 14,
                           ),
                         ],
@@ -80,9 +80,9 @@ class _CaloriesCardState extends State<CaloriesCard> {
               ),
               Row(
                 children: [
-                  const AppText(
-                    text: '140',
-                    color: Color(0xff5142AB),
+                  AppText(
+                    text: widget.calories,
+                    color: const Color(0xff5142AB),
                     fontSize: 24,
                     fontWeight: FontWeight.w700,
                   ),
