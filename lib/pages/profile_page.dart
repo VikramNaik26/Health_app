@@ -65,9 +65,12 @@ class _ProfilePageState extends State<ProfilePage> {
               child: ListView.separated(
                 itemBuilder: (context, index) {
                   return UserInputField(
+                    // textFieldEnabled: isEnabled,
                     size: size,
+                    indX: index,
                     label: userInfo.keys.elementAt(index),
                     hintText: userInfo.values.elementAt(index),
+                    userInfo: userInfo,
                   );
                 },
                 separatorBuilder: (context, index) => const SizedBox(

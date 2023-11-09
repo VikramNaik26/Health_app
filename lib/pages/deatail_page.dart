@@ -54,8 +54,33 @@ class _DeatailPageState extends State<DeatailPage> {
             distanceUnit: 'km',
             calories: '140',
           ),
+          cardDiivider(),
+          const CaloriesCard(
+            activity: 'Outdoor Run',
+            distance: '0,81',
+            distanceUnit: 'km',
+            calories: '40',
+          ),
+          cardDiivider(),
+          const CaloriesCard(
+            activity: 'Outdoor Run',
+            distance: '1,71',
+            distanceUnit: 'km',
+            calories: '150',
+          )
         ],
       ),
+    );
+  }
+
+  Divider cardDiivider() {
+    return Divider(
+      height: 3,
+      thickness: 2,
+      indent: 20,
+      
+      endIndent: 20,
+      color: Colors.grey.withOpacity(0.2),
     );
   }
 

@@ -29,20 +29,17 @@ class _CaloriesCardState extends State<CaloriesCard> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        
         Container(
           margin: const EdgeInsets.symmetric(
             horizontal: 20,
-            vertical: 10,
+          vertical: 16,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
-                  
                   Container(
-
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: const Color(0xff5142AB).withOpacity(.1),
