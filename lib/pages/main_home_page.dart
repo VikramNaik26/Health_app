@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:health_app/pages/deatail_page.dart';
@@ -138,15 +139,13 @@ class _MainPageState extends State<MainPage> {
                         ),
                       ],
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const DeatailPage(),
-                          ),
-                        );
-                      },
+                    OpenContainer(
+                      closedBuilder:
+                          (BuildContext context, void Function() action) {
+                            return MainPage()
+                          },
+                      openBuilder: (BuildContext context,
+                          void Function({Object? returnValue}) action) {},
                       child: HealthCard(
                         size: size,
                         title: 'Calories',
@@ -156,7 +155,8 @@ class _MainPageState extends State<MainPage> {
                         readings: '540',
                         unit: 'kcal',
                         linearGradient: const LinearGradient(
-                          begin: Alignment.topCenter, // Starting from the left
+                          begin:
+                              Alignment.topCenter, // Starting from the left
                           end: Alignment.bottomCenter, // Ending at the right
                           colors: [
                             Colors.white,
