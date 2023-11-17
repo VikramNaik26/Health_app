@@ -1,67 +1,154 @@
 import 'package:flutter/material.dart';
+import 'package:health_app/widgets/app_text.dart';
 import 'package:health_app/widgets/user_gender_card.dart';
 import 'package:health_app/widgets/user_card.dart';
 
-class UserInfoPage extends StatelessWidget {
+class UserInfoPage extends StatefulWidget {
   const UserInfoPage({super.key});
 
   @override
+  State<UserInfoPage> createState() => _UserInfoPageState();
+}
+
+class _UserInfoPageState extends State<UserInfoPage> {
+  @override
   Widget build(BuildContext context) {
-    const userDetails = [
-      UserCard(
+    List userDetails = [
+      const UserCard(
         subQuestion: 'How can we address you?',
         svgPath: 'assets/icons/Group.svg',
         hintText: 'Type your name',
         question: 'Let\'s Get To Know You Better',
       ),
-      UserCard(
+      const UserGenderCard(),
+      const UserCard(
         svgPath: 'assets/icons/date-of-birth-icon.svg',
         question: 'Enter your Age?',
         hintText: 'Type your age',
       ),
-      UserCard(
+      const UserCard(
         svgPath: 'assets/icons/body-weight-scales-icon.svg',
         question: 'What is your current Weight?',
         hintText: 'Type your weight',
       ),
-      UserCard(
+      const UserCard(
         svgPath: 'assets/icons/measure-height-icon.svg',
         question: 'What is your current Height?',
         hintText: 'Type your height',
       ),
-      UserCard(
+      const UserCard(
         svgPath: 'assets/icons/compass-active.svg',
         question: 'How active you are?',
         hintText: 'Use Dropdown menu',
       ),
-      UserCard(
+      const UserCard(
         svgPath: 'assets/icons/temperature-low.svg',
         question: 'What is your current Temperature?',
         hintText: 'Use Dropdown menu',
       ),
     ];
 
+    var index = 0;
     return SafeArea(
       child: Scaffold(
-        body: UserGenderCard(),
-        floatingActionButton: FloatingActionButton(
-          child: Container(
-            height: 60,
-            width: 60,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color(0xff1EFFD7),
-                  Color(0xff008080),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            userDetails[index],
+            Container(
+              margin: const EdgeInsets.symmetric(
+                vertical: 40,
+                horizontal: 32,
+              ),
+              child: Row(
+                mainAxisAlignment: index > 0
+                    ? MainAxisAlignment.spaceBetween
+                    : MainAxisAlignment.end,
+                children: [
+                  if (index > 0)
+                    TextButton(
+                      child: Container(
+                        height: 60,
+                        width: 60,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Color(0xff1EFFD7),
+                              Color(0xff008080),
+                            ],
+                          ),
+                        ),
+                        child: const Icon(
+                          Icons.chevron_left,
+                          color: Colors.white,
+                        ),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          index--;
+                        });
+                      },
+                    ),
+                  if (index < userDetails.length - 1)
+                    TextButton(
+                      child: Container(
+                          height: 60,
+                          width: 60,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                Color(0xff1EFFD7),
+                                Color(0xff008080),
+                              ],
+                            ),
+                          ),
+                          child: const Icon(
+                            Icons.chevron_right,
+                            color: Colors.white,
+                          )),
+                      onPressed: () {
+                        setState(() {
+                          index++;
+                        });
+                      },
+                    ),
+                  if (index == userDetails.length - 1)
+                    TextButton(
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 60,
+                        width: 140,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          gradient: const LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Color(0xff1EFFD7),
+                              Color(0xff008080),
+                            ],
+                          ),
+                        ),
+                        child: const AppText(
+                          text: 'Check Now',
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      onPressed: () {
+                        setState(() {});
+                      },
+                    ),
                 ],
               ),
             ),
-            child: const Icon(Icons.chevron_right),
-          ),
-          onPressed: () {},
+          ],
         ),
       ),
     );

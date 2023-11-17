@@ -7,7 +7,7 @@ class HealthCard extends StatelessWidget {
     super.key,
     required this.size,
     required this.title,
-    required this.iconPath,
+    this.iconPath = '',
     // this.mainIconWidth = 0,
     this.textColor,
     this.height,
@@ -63,9 +63,10 @@ class HealthCard extends StatelessWidget {
                   color: textColor ?? const Color(0xff53668E),
                   fontWeight: FontWeight.bold,
                 ),
-                SvgPicture.asset(
-                  iconPath,
-                )
+                if (iconPath.isNotEmpty)
+                  SvgPicture.asset(
+                    iconPath,
+                  )
               ],
             ),
           ),
