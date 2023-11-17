@@ -1,7 +1,10 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:health_app/widgets/app_large_text.dart';
 import 'package:health_app/widgets/app_text.dart';
+import 'package:health_app/widgets/inpu_field.dart';
 
 class UserInfoPage extends StatelessWidget {
   const UserInfoPage({super.key});
@@ -11,56 +14,12 @@ class UserInfoPage extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: [
-            SizedBox(
-              height: size.height * .25,
-            ),
-            Container(
-              alignment: Alignment.center,
-              width: size.width * .7,
-              child: const AppLargeText(
-                text: 'Let\'s Get To Know You Better',
-                fontSize: 23,
-                color: Color(0xff07CFAB),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            SvgPicture.asset('assets/icons/Group.svg'),
-            const SizedBox(
-              height: 30,
-            ),
-            const AppText(
-              text: 'How can we address you?',
-              fontSize: 20,
-              color: Color(0xff7B6F72),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(
-                horizontal: 36,
-                vertical: 10,
-              ),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  width: 1,
-                  color: const Color.fromRGBO(0, 0, 0, 0.18),
-                ),
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: const TextField(
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'Type your name',
-                ),
-              ),
-            ),
-          ],
+        body: UserNameCard(
+          size: size,
+          subQuestion: 'How can we address you?',
+          svgPath: 'assets/icons/Group.svg',
+          hintText: 'Type your name',
+          question: 'Let\'s Get To Know You Better',
         ),
         floatingActionButton: FloatingActionButton(
           child: Container(
@@ -82,6 +41,102 @@ class UserInfoPage extends StatelessWidget {
           onPressed: () {},
         ),
       ),
+    );
+  }
+}
+
+class UserGenderCard extends StatelessWidget {
+  const UserGenderCard({
+    super.key,
+    required this.size,
+  });
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SizedBox(
+          height: size.height * .20,
+        ),
+        Container(
+          alignment: Alignment.center,
+          width: size.width * .7,
+          child: const AppLargeText(
+            text: 'What is your Gender?',
+            fontSize: 23,
+            color: Color(0xff07CFAB),
+          ),
+        ),
+        const SizedBox(
+          height: 50,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            SvgPicture.asset('assets/icons/male_icon.svg'),
+            SvgPicture.asset('assets/icons/female-icon.svg'),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class UserNameCard extends StatelessWidget {
+  const UserNameCard({
+    super.key,
+    required this.size,
+    this.subQuestion = '',
+    required this.svgPath,
+    required this.question,
+    required this.hintText,
+  });
+
+  final Size size;
+  final String subQuestion;
+  final String svgPath;
+  final String question;
+  final String hintText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          height: size.height * .20,
+        ),
+        Container(
+          alignment: Alignment.center,
+          width: size.width * .7,
+          child: AppLargeText(
+            text: question,
+            fontSize: 23,
+            color: Color(0xff07CFAB),
+          ),
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        SvgPicture.asset(svgPath),
+        const SizedBox(
+          height: 30,
+        ),
+        if (subQuestion.isNotEmpty)
+          AppText(
+            text: subQuestion,
+            fontSize: 20,
+            color: const Color(0xff7B6F72),
+          ),
+        const SizedBox(
+          height: 30,
+        ),
+        InputField(
+          hintText: hintText,
+        ),
+      ],
     );
   }
 }
