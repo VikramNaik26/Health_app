@@ -23,8 +23,10 @@ class InputField extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
       ),
       child: TextField(
+        
         textAlign: TextAlign.center,
         decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(vertical: 22),
           border: InputBorder.none,
           hintText: hintText,
         ),
