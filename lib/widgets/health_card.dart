@@ -96,7 +96,7 @@ class HealthCard extends StatelessWidget {
                             color: textColor?.withOpacity(.60) ??
                                 const Color(0xff53668E),
                             fontSize: 12,
-                          )
+                          ),
                         ],
                       ),
                     ),
