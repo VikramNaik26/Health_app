@@ -1,10 +1,14 @@
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:health_app/pages/home_page.dart';
+import 'package:health_app/routes/app_router.dart';
+import 'package:health_app/screens/home_screen.dart';
 import 'package:health_app/widgets/app_large_text.dart';
 import 'package:health_app/widgets/app_text.dart';
 import 'package:health_app/widgets/calories_card.dart';
 
+@RoutePage()
 class DeatailPage extends StatefulWidget {
   const DeatailPage({super.key});
 
@@ -78,7 +82,6 @@ class _DeatailPageState extends State<DeatailPage> {
       height: 3,
       thickness: 2,
       indent: 20,
-      
       endIndent: 20,
       color: Colors.grey.withOpacity(0.2),
     );
@@ -152,7 +155,8 @@ class _DeatailPageState extends State<DeatailPage> {
         children: [
           IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              // Navigator.pop(context);
+              context.router.pop(const DeatailRoute());
             },
             icon: const Icon(
               Icons.chevron_left,

@@ -1,8 +1,10 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:health_app/widgets/app_text.dart';
 import 'package:health_app/widgets/user_gender_card.dart';
 import 'package:health_app/widgets/user_card.dart';
 
+@RoutePage()
 class UserInfoPage extends StatefulWidget {
   const UserInfoPage({super.key});
 
@@ -48,7 +50,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
       ),
     ];
 
-    var index = 0;
+    int index = 0;
+
     return SafeArea(
       child: Scaffold(
         body: Column(

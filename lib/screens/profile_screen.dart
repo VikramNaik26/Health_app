@@ -1,12 +1,16 @@
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:health_app/pages/home_page.dart';
+import 'package:health_app/routes/app_router.dart';
+import 'package:health_app/screens/home_screen.dart';
 import 'package:health_app/user_info.dart';
 import 'package:health_app/widgets/app_large_text.dart';
 import 'package:health_app/widgets/app_text.dart';
 import 'package:health_app/widgets/save_button.dart';
 import 'package:health_app/widgets/user_input_field.dart';
 
+@RoutePage()
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -37,7 +41,8 @@ class _ProfilePageState extends State<ProfilePage> {
               child: IconButton(
                 icon: const Icon(Icons.chevron_left),
                 onPressed: () {
-                  Navigator.pop(context);
+                  // Navigator.pop(context);
+                  context.router.pop(const ProfileRoute());
                 },
               ),
             ),

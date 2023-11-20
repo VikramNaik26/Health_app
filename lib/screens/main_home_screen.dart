@@ -1,11 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:health_app/pages/deatail_page.dart';
-import 'package:health_app/pages/home_page.dart';
-import 'package:health_app/pages/profile_page.dart';
+import 'package:health_app/routes/app_router.dart';
+import 'package:health_app/screens/deatail_screen.dart';
+import 'package:health_app/screens/home_screen.dart';
 import 'package:health_app/widgets/header_with_profile.dart';
 import 'package:health_app/widgets/health_card.dart';
 
+@RoutePage()
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
@@ -24,12 +26,15 @@ class _MainPageState extends State<MainPage> {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: 0,
           onTap: (index) {
-            Navigator.push(
+            if (index == 3) {
+              context.router.push(const ProfileRoute());
+            }
+            /* Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => const ProfilePage(),
               ),
-            );
+            ); */
           },
           type: BottomNavigationBarType.fixed,
           selectedFontSize: 0,
@@ -59,7 +64,9 @@ class _MainPageState extends State<MainPage> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            context.router.push(const UserInfoRoute());
+          },
           tooltip: 'Increment',
           child: SvgPicture.asset(
             'assets/icons/addIcon.svg',

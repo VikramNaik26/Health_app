@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_app/pages/deatail_page.dart';
-import 'package:health_app/pages/home_page.dart';
-import 'package:health_app/pages/main_home_page.dart';
-import 'package:health_app/pages/profile_page.dart';
-import 'package:health_app/pages/result_page.dart';
-import 'package:health_app/pages/user_info.dart';
+import 'package:health_app/routes/app_router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,13 +11,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final _appRouter = AppRouter();
+
+    return MaterialApp.router(
+      routerConfig: _appRouter.config(),
       debugShowCheckedModeBanner: false,
       title: 'Health App',
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: const ResultPage(),
     );
   }
 }

@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:health_app/pages/main_home_page.dart';
+import 'package:health_app/routes/app_router.dart';
 import 'package:health_app/widgets/app_large_text.dart';
 import 'package:health_app/widgets/app_text.dart';
 
+@RoutePage()
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
@@ -43,12 +45,13 @@ class _MyHomePageState extends State<MyHomePage> {
           SizedBox(height: size.height * 0.15),
           FloatingActionButton(
             onPressed: () {
-              Navigator.push(
+              /* Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => const MainPage(),
                 ),
-              );
+              ); */
+              context.router.push(const MainRoute());
             },
             child: const Icon(
               Icons.chevron_right,
