@@ -1,21 +1,31 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_route/annotations.dart';
+import 'package:health_app/routes/app_router.dart';
 import 'package:health_app/widgets/app_text.dart';
 import 'package:health_app/widgets/user_gender_card.dart';
 import 'package:health_app/widgets/user_card.dart';
 
 @RoutePage()
 class UserInfoPage extends StatefulWidget {
-  const UserInfoPage({super.key});
+  const UserInfoPage({Key? key}) : super(key: key);
 
   @override
   State<UserInfoPage> createState() => _UserInfoPageState();
 }
 
 class _UserInfoPageState extends State<UserInfoPage> {
+  int index = 0;
+
+  void updateIndex(int newIndex) {
+    setState(() {
+      index = newIndex;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    List userDetails = [
+    List<Widget> userDetails = [
       const UserCard(
         subQuestion: 'How can we address you?',
         svgPath: 'assets/icons/Group.svg',
@@ -49,8 +59,6 @@ class _UserInfoPageState extends State<UserInfoPage> {
         hintText: 'Use Dropdown menu',
       ),
     ];
-
-    int index = 0;
 
     return SafeArea(
       child: Scaffold(
@@ -89,11 +97,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                           color: Colors.white,
                         ),
                       ),
-                      onPressed: () {
-                        setState(() {
-                          index--;
-                        });
-                      },
+                      onPressed: () => updateIndex(index - 1),
                     ),
                   if (index < userDetails.length - 1)
                     TextButton(
@@ -115,11 +119,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                             Icons.chevron_right,
                             color: Colors.white,
                           )),
-                      onPressed: () {
-                        setState(() {
-                          index++;
-                        });
-                      },
+                      onPressed: () => updateIndex(index + 1),
                     ),
                   if (index == userDetails.length - 1)
                     TextButton(
@@ -145,7 +145,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
                         ),
                       ),
                       onPressed: () {
-                        setState(() {});
+                        // Handle the button press at the last index
+                        context.router.push(const ResultRoute());
                       },
                     ),
                 ],

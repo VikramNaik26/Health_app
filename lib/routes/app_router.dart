@@ -18,7 +18,8 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: MainRoute.page),
         AutoRoute(page: DeatailRoute.page),
         AutoRoute(page: ProfileRoute.page),
-        AutoRoute(page: UserInfoRoute.page)
+        AutoRoute(page: UserInfoRoute.page),
+        AutoRoute(page: ResultRoute.page),
 
         /// routes go here
       ];
