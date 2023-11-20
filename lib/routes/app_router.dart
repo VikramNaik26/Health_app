@@ -1,12 +1,10 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:health_app/first_screen.dart';
 import 'package:health_app/screens/deatail_screen.dart';
 import 'package:health_app/screens/home_screen.dart';
 import 'package:health_app/screens/main_home_screen.dart';
 import 'package:health_app/screens/profile_screen.dart';
 import 'package:health_app/screens/result_screen.dart';
 import 'package:health_app/screens/user_screen.dart';
-import 'package:health_app/second_screen.dart';
 
 part 'app_router.gr.dart';
 

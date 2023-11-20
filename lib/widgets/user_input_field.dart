@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:health_app/user_info.dart';
 import 'package:health_app/widgets/app_text.dart';
 
 class UserInputField extends StatefulWidget {
@@ -73,7 +72,7 @@ class _UserInputFieldState extends State<UserInputField> {
                       () {
                         isReadOnly = !isReadOnly;
                         if (isReadOnly) {
-                          print(userInfo);
+                          // print(userInfo);
                         } else {}
                       },
                     );

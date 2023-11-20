@@ -1,6 +1,5 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:health_app/widgets/app_large_text.dart';
 import 'package:health_app/widgets/app_text.dart';
 import 'package:health_app/widgets/health_card.dart';
 
