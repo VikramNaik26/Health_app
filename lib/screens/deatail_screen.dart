@@ -25,53 +25,56 @@ class _DeatailPageState extends State<DeatailPage> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: appBar(),
-      body: Column(
-        children: [
-          detailsPageHeader(),
-          caloriesGraph(size),
-          Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 10,
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
+            detailsPageHeader(),
+            caloriesGraph(size),
+            Container(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 10,
+              ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  AppText(
+                    text: 'Workouts',
+                    color: Color(0xff061941),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                  ),
+                  AppText(
+                    text: 'Show all',
+                    color: Color(0xff5142AB),
+                    fontSize: 14,
+                  ),
+                ],
+              ),
             ),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                AppText(
-                  text: 'Workouts',
-                  color: Color(0xff061941),
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                ),
-                AppText(
-                  text: 'Show all',
-                  color: Color(0xff5142AB),
-                  fontSize: 14,
-                ),
-              ],
+            const CaloriesCard(
+              activity: 'Outdoor Run',
+              distance: '1,31',
+              distanceUnit: 'km',
+              calories: '140',
             ),
-          ),
-          const CaloriesCard(
-            activity: 'Outdoor Run',
-            distance: '1,31',
-            distanceUnit: 'km',
-            calories: '140',
-          ),
-          cardDiivider(),
-          const CaloriesCard(
-            activity: 'Outdoor Run',
-            distance: '0,81',
-            distanceUnit: 'km',
-            calories: '40',
-          ),
-          cardDiivider(),
-          const CaloriesCard(
-            activity: 'Outdoor Run',
-            distance: '1,71',
-            distanceUnit: 'km',
-            calories: '150',
-          )
-        ],
+            cardDiivider(),
+            const CaloriesCard(
+              activity: 'Outdoor Run',
+              distance: '0,81',
+              distanceUnit: 'km',
+              calories: '40',
+            ),
+            cardDiivider(),
+            const CaloriesCard(
+              activity: 'Outdoor Run',
+              distance: '1,71',
+              distanceUnit: 'km',
+              calories: '150',
+            )
+          ],
+        ),
       ),
     );
   }

@@ -32,7 +32,7 @@ class _UserInputFieldState extends State<UserInputField> {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 30),
       padding: const EdgeInsets.symmetric(
-        horizontal: 15,
+        horizontal: 12,
         vertical: 0,
       ),
       decoration: BoxDecoration(

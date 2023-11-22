@@ -40,10 +40,9 @@ class ResultPage extends StatelessWidget {
               ),
               HealthCard(
                 size: size,
-                
                 title: 'Water',
                 mainIconPath: 'assets/icons/Water iluss.svg',
-              )
+              ),
             ],
           ),
         ),

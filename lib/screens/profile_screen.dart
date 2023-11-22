@@ -142,7 +142,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           Positioned(
             bottom: 1,
-            right: 3,
+            right: 1.6,
             child: IconButton(
               onPressed: () {},
               icon: SvgPicture.asset('assets/icons/Edit.svg'),
