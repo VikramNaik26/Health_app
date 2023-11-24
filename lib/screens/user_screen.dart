@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:health_app/routes/app_router.dart';
 import 'package:health_app/widgets/app_text.dart';
+import 'package:health_app/widgets/inpu_field.dart';
 import 'package:health_app/widgets/user_gender_card.dart';
 import 'package:health_app/widgets/user_card.dart';
 
@@ -118,7 +119,9 @@ class _UserInfoPageState extends State<UserInfoPage> {
                             Icons.chevron_right,
                             color: Colors.white,
                           )),
-                      onPressed: () => updateIndex(index + 1),
+                      onPressed: () {
+                        updateIndex(index + 1);
+                      },
                     ),
                   if (index == userDetails.length - 1)
                     TextButton(

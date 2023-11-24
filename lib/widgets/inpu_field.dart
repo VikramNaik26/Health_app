@@ -1,12 +1,31 @@
 import 'package:flutter/material.dart';
 
-class InputField extends StatelessWidget {
+class InputField extends StatefulWidget {
   const InputField({
     super.key,
     required this.hintText,
   });
 
   final String hintText;
+
+  @override
+  State<InputField> createState() => _InputFieldState();
+}
+
+class _InputFieldState extends State<InputField> {
+  late final TextEditingController _userDetails;
+
+  @override
+  void initState() {
+    super.initState();
+    _userDetails = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _userDetails.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +42,12 @@ class InputField extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
       ),
       child: TextField(
-        
+        controller: _userDetails,
         textAlign: TextAlign.center,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(vertical: 22),
           border: InputBorder.none,
-          hintText: hintText,
+          hintText: widget.hintText,
         ),
       ),
     );
