@@ -21,12 +21,6 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const DeatailPage(),
       );
     },
-    /* FirstRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const FirstScreen(),
-      );
-    }, */
     MainRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -46,17 +40,20 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     ResultRoute.name: (routeData) {
+      final args = routeData.argsAs<ResultRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ResultPage(),
+        child: ResultPage(
+          key: args.key,
+          nameController: args.nameController,
+          ageController: args.ageController,
+          weightController: args.weightController,
+          heightController: args.heightController,
+          activityController: args.activityController,
+          temperatureController: args.temperatureController,
+        ),
       );
     },
-    /* SecondRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const SecondScreen(),
-      );
-    }, */
     UserInfoRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -76,20 +73,6 @@ class DeatailRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'DeatailRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [FirstScreen]
-class FirstRoute extends PageRouteInfo<void> {
-  const FirstRoute({List<PageRouteInfo>? children})
-      : super(
-          FirstRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'FirstRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -138,30 +121,64 @@ class ProfileRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [ResultPage]
-class ResultRoute extends PageRouteInfo<void> {
-  const ResultRoute({List<PageRouteInfo>? children})
-      : super(
+class ResultRoute extends PageRouteInfo<ResultRouteArgs> {
+  ResultRoute({
+    Key? key,
+    required TextEditingController nameController,
+    required TextEditingController ageController,
+    required TextEditingController weightController,
+    required TextEditingController heightController,
+    required TextEditingController activityController,
+    required TextEditingController temperatureController,
+    List<PageRouteInfo>? children,
+  }) : super(
           ResultRoute.name,
+          args: ResultRouteArgs(
+            key: key,
+            nameController: nameController,
+            ageController: ageController,
+            weightController: weightController,
+            heightController: heightController,
+            activityController: activityController,
+            temperatureController: temperatureController,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'ResultRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<ResultRouteArgs> page = PageInfo<ResultRouteArgs>(name);
 }
 
-/// generated route for
-/// [SecondScreen]
-class SecondRoute extends PageRouteInfo<void> {
-  const SecondRoute({List<PageRouteInfo>? children})
-      : super(
-          SecondRoute.name,
-          initialChildren: children,
-        );
+class ResultRouteArgs {
+  const ResultRouteArgs({
+    this.key,
+    required this.nameController,
+    required this.ageController,
+    required this.weightController,
+    required this.heightController,
+    required this.activityController,
+    required this.temperatureController,
+  });
 
-  static const String name = 'SecondRoute';
+  final Key? key;
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  final TextEditingController nameController;
+
+  final TextEditingController ageController;
+
+  final TextEditingController weightController;
+
+  final TextEditingController heightController;
+
+  final TextEditingController activityController;
+
+  final TextEditingController temperatureController;
+
+  @override
+  String toString() {
+    return 'ResultRouteArgs{key: $key, nameController: $nameController, ageController: $ageController, weightController: $weightController, heightController: $heightController, activityController: $activityController, temperatureController: $temperatureController}';
+  }
 }
 
 /// generated route for

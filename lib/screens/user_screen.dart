@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:health_app/routes/app_router.dart';
 import 'package:health_app/widgets/app_text.dart';
-import 'package:health_app/widgets/inpu_field.dart';
 import 'package:health_app/widgets/user_gender_card.dart';
 import 'package:health_app/widgets/user_card.dart';
 
@@ -15,7 +14,15 @@ class UserInfoPage extends StatefulWidget {
 }
 
 class _UserInfoPageState extends State<UserInfoPage> {
+  String? selectedGender;
   int index = 0;
+
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
+  final TextEditingController weightController = TextEditingController();
+  final TextEditingController heightController = TextEditingController();
+  final TextEditingController activityController = TextEditingController();
+  final TextEditingController temperatureController = TextEditingController();
 
   void updateIndex(int newIndex) {
     setState(() {
@@ -26,37 +33,49 @@ class _UserInfoPageState extends State<UserInfoPage> {
   @override
   Widget build(BuildContext context) {
     List<Widget> userDetails = [
-      const UserCard(
+      UserCard(
         subQuestion: 'How can we address you?',
         svgPath: 'assets/icons/Group.svg',
         hintText: 'Type your name',
         question: 'Let\'s Get To Know You Better',
+        controller: nameController,
       ),
-      const UserGenderCard(),
-      const UserCard(
+      UserGenderCard(
+        onGenderSelected: (gender) {
+          setState(() {
+            selectedGender = gender;
+          });
+        },
+      ),
+      UserCard(
         svgPath: 'assets/icons/date-of-birth-icon.svg',
         question: 'Enter your Age?',
         hintText: 'Type your age',
+        controller: ageController,
       ),
-      const UserCard(
+      UserCard(
         svgPath: 'assets/icons/body-weight-scales-icon.svg',
         question: 'What is your current Weight?',
-        hintText: 'Type your weight',
+        hintText: 'Type your weight in kg',
+        controller: weightController,
       ),
-      const UserCard(
+      UserCard(
         svgPath: 'assets/icons/measure-height-icon.svg',
         question: 'What is your current Height?',
-        hintText: 'Type your height',
+        hintText: 'Type your height in cm',
+        controller: heightController,
       ),
-      const UserCard(
+      UserCard(
         svgPath: 'assets/icons/compass-active.svg',
         question: 'How active you are?',
-        hintText: 'Use Dropdown menu',
+        hintText: 'Type your active status',
+        controller: activityController,
       ),
-      const UserCard(
+      UserCard(
         svgPath: 'assets/icons/temperature-low.svg',
         question: 'What is your current Temperature?',
-        hintText: 'Use Dropdown menu',
+        hintText: 'Type the current Temperature in °C',
+        controller: temperatureController,
       ),
     ];
 
@@ -147,8 +166,16 @@ class _UserInfoPageState extends State<UserInfoPage> {
                         ),
                       ),
                       onPressed: () {
-                        // Handle the button press at the last index
-                        context.router.push(const ResultRoute());
+                        context.router.push(
+                          ResultRoute(
+                            nameController: nameController,
+                            ageController: ageController,
+                            weightController: weightController,
+                            heightController: heightController,
+                            activityController: activityController,
+                            temperatureController: temperatureController,
+                          ),
+                        );
                       },
                     ),
                 ],

@@ -4,29 +4,17 @@ class InputField extends StatefulWidget {
   const InputField({
     super.key,
     required this.hintText,
+    this.controller,
   });
 
   final String hintText;
+  final TextEditingController? controller;
 
   @override
   State<InputField> createState() => _InputFieldState();
 }
 
 class _InputFieldState extends State<InputField> {
-  late final TextEditingController _userDetails;
-
-  @override
-  void initState() {
-    super.initState();
-    _userDetails = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _userDetails.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,7 +30,7 @@ class _InputFieldState extends State<InputField> {
         borderRadius: BorderRadius.circular(30),
       ),
       child: TextField(
-        controller: _userDetails,
+        controller: widget.controller ?? TextEditingController(),
         textAlign: TextAlign.center,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(vertical: 22),

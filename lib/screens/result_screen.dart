@@ -13,12 +13,61 @@ final Map inputDeatails = {
 };
 
 @RoutePage()
-class ResultPage extends StatelessWidget {
-  const ResultPage({super.key});
+class ResultPage extends StatefulWidget {
+  const ResultPage({
+    Key? key, // Change here
+    required this.nameController,
+    required this.ageController,
+    required this.weightController,
+    required this.heightController,
+    required this.activityController,
+    required this.temperatureController,
+    // required this.gender,
+  }) : super(key: key);
 
+  final TextEditingController nameController;
+  // final String gender
+  final TextEditingController ageController;
+  final TextEditingController weightController;
+  final TextEditingController heightController;
+  final TextEditingController activityController;
+  final TextEditingController temperatureController;
+
+  @override
+  State<ResultPage> createState() => _ResultPageState();
+}
+
+class _ResultPageState extends State<ResultPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
+    String name = widget.nameController.text;
+    String age = widget.ageController.text;
+    String weight = widget.weightController.text;
+    String height = widget.heightController.text;
+    String activity = widget.activityController.text;
+    String temperature = widget.temperatureController.text;
+
+    bool anyControllerIsEmpty = [
+      name,
+      age,
+      weight,
+      height,
+      activity,
+      temperature,
+    ].any((value) => value.isEmpty);
+
+    if (anyControllerIsEmpty) {
+      // Handle the case where any of the controllers is empty or null
+      // For example, you can show an error message and return an empty widget
+      return const Scaffold(
+        body: Center(
+          child: Text('Please fill in all the details'),
+        ),
+      );
+    }
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -32,7 +81,7 @@ class ResultPage extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 50),
                 child: AppText(
-                  text: 'Hello, Vikram Naik',
+                  text: 'Hello',
                   fontSize: 24,
                   color: Color(0xff05958E),
                   fontWeight: FontWeight.w500,
@@ -53,7 +102,7 @@ class ResultPage extends StatelessWidget {
                   itemCount: inputDeatails.length,
                 ),
               ),
-              waterCard(size: size),
+              WaterCard(size: size),
               const SizedBox(
                 height: 30,
               )
@@ -65,8 +114,8 @@ class ResultPage extends StatelessWidget {
   }
 }
 
-class waterCard extends StatelessWidget {
-  const waterCard({
+class WaterCard extends StatelessWidget {
+  const WaterCard({
     super.key,
     required this.size,
   });

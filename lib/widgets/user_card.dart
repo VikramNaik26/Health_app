@@ -11,12 +11,14 @@ class UserCard extends StatelessWidget {
     required this.svgPath,
     required this.question,
     required this.hintText,
+    required this.controller,
   });
 
   final String subQuestion;
   final String svgPath;
   final String question;
   final String hintText;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +55,7 @@ class UserCard extends StatelessWidget {
         ),
         InputField(
           hintText: hintText,
+          controller: controller,
         ),
       ],
     );

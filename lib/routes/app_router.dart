@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:health_app/screens/deatail_screen.dart';
 import 'package:health_app/screens/home_screen.dart';
 import 'package:health_app/screens/main_home_screen.dart';
@@ -19,8 +20,15 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: DeatailRoute.page),
         AutoRoute(page: ProfileRoute.page),
         AutoRoute(page: UserInfoRoute.page),
-        AutoRoute(page: ResultRoute.page),
+        AutoRoute(
+          page: ResultRoute.page,
+        ),
 
         /// routes go here
       ];
 } /* dart run build_runner build watch -d */
+
+/* 
+flutter pub run build_runner clean
+flutter pub run build_runner build
+ */
