@@ -1,16 +1,9 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:health_app/widgets/app_text.dart';
 
-final Map inputDeatails = {
-  'Age:': '19',
-  'Gender:': 'Male',
-  'Weight:': '52',
-  'Height:': '164',
-  'Activeness:': '',
-  'Temp Factor:': '',
-};
+import '../calculations.dart';
 
 @RoutePage()
 class ResultPage extends StatefulWidget {
@@ -22,11 +15,11 @@ class ResultPage extends StatefulWidget {
     required this.heightController,
     required this.activityController,
     required this.temperatureController,
-    // required this.gender,
+    required this.gender,
   }) : super(key: key);
 
   final TextEditingController nameController;
-  // final String gender
+  final String gender;
   final TextEditingController ageController;
   final TextEditingController weightController;
   final TextEditingController heightController;
@@ -38,11 +31,14 @@ class ResultPage extends StatefulWidget {
 }
 
 class _ResultPageState extends State<ResultPage> {
+  late final double requiredWater;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     String name = widget.nameController.text;
+    String gender = widget.gender;
     String age = widget.ageController.text;
     String weight = widget.weightController.text;
     String height = widget.heightController.text;
@@ -52,20 +48,85 @@ class _ResultPageState extends State<ResultPage> {
     bool anyControllerIsEmpty = [
       name,
       age,
+      gender,
       weight,
       height,
       activity,
       temperature,
     ].any((value) => value.isEmpty);
 
+    final Map inputDeatails = {
+      'Age:': age,
+      'Gender:': gender,
+      'Weight:': weight,
+      'Height:': height,
+      'Activeness:': activity,
+      'Temp Factor:': temperature,
+    };
+
     if (anyControllerIsEmpty) {
-      // Handle the case where any of the controllers is empty or null
-      // For example, you can show an error message and return an empty widget
-      return const Scaffold(
+      return Scaffold(
         body: Center(
-          child: Text('Please fill in all the details'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                margin: const EdgeInsets.only(bottom: 6),
+                width: 100,
+                height: 100,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/invalid.jpg'))),
+              ),
+              const AppText(
+                text: 'Please fill in all the details',
+                fontSize: 28,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextButton(
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  alignment: Alignment.center,
+                  height: 60,
+                  width: 160,
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color(0xff1EFFD7),
+                        Color(0xff008080),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: const AppText(
+                    text: 'Refill the Details',
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                onPressed: () {
+                  context.router.pop();
+                },
+              ),
+            ],
+          ),
         ),
       );
+    } else {
+      double bmr = getBMR(gender, double.parse(weight), double.parse(height),
+          double.parse(age));
+      double physicalAct = getPhysicalAct();
+      double tempFactor = getTempFactor(double.parse(temperature));
+      double tdwn = getTDWN(bmr, physicalAct, tempFactor);
+      requiredWater = (tdwn / 1000);
+
+      /* print('$age $weight $height $temperature');
+      print(double.parse(age).runtimeType); */
+      // print('$physicalAct $tempFactor $tdwn $bmr');
     }
 
     return SafeArea(
@@ -78,13 +139,13 @@ class _ResultPageState extends State<ResultPage> {
               const SizedBox(
                 height: 40,
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 50),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50),
                 child: AppText(
-                  text: 'Hello',
-                  fontSize: 24,
-                  color: Color(0xff05958E),
-                  fontWeight: FontWeight.w500,
+                  text: 'Hello, $name',
+                  fontSize: 32,
+                  color: const Color(0xff05958E),
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(
@@ -102,7 +163,10 @@ class _ResultPageState extends State<ResultPage> {
                   itemCount: inputDeatails.length,
                 ),
               ),
-              WaterCard(size: size),
+              WaterCard(
+                size: size,
+                requiredWater: requiredWater,
+              ),
               const SizedBox(
                 height: 30,
               )
@@ -118,9 +182,11 @@ class WaterCard extends StatelessWidget {
   const WaterCard({
     super.key,
     required this.size,
+    required this.requiredWater,
   });
 
   final Size size;
+  final double requiredWater;
 
   @override
   Widget build(BuildContext context) {
@@ -161,9 +227,9 @@ class WaterCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const AppText(
-                text: '4.2 Liters',
-                color: Color(0xff867E7E),
+              AppText(
+                text: '${requiredWater.toStringAsFixed(2)} Liters',
+                color: const Color(0xff867E7E),
                 fontSize: 24,
                 fontWeight: FontWeight.w500,
               ),

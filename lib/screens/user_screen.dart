@@ -168,6 +168,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                       onPressed: () {
                         context.router.push(
                           ResultRoute(
+                            gender: selectedGender ?? 'Male',
                             nameController: nameController,
                             ageController: ageController,
                             weightController: weightController,

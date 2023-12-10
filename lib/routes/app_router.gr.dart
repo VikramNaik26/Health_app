@@ -51,6 +51,7 @@ abstract class _$AppRouter extends RootStackRouter {
           heightController: args.heightController,
           activityController: args.activityController,
           temperatureController: args.temperatureController,
+          gender: args.gender,
         ),
       );
     },
@@ -130,6 +131,7 @@ class ResultRoute extends PageRouteInfo<ResultRouteArgs> {
     required TextEditingController heightController,
     required TextEditingController activityController,
     required TextEditingController temperatureController,
+    required String gender,
     List<PageRouteInfo>? children,
   }) : super(
           ResultRoute.name,
@@ -141,6 +143,7 @@ class ResultRoute extends PageRouteInfo<ResultRouteArgs> {
             heightController: heightController,
             activityController: activityController,
             temperatureController: temperatureController,
+            gender: gender,
           ),
           initialChildren: children,
         );
@@ -159,6 +162,7 @@ class ResultRouteArgs {
     required this.heightController,
     required this.activityController,
     required this.temperatureController,
+    required this.gender,
   });
 
   final Key? key;
@@ -175,9 +179,11 @@ class ResultRouteArgs {
 
   final TextEditingController temperatureController;
 
+  final String gender;
+
   @override
   String toString() {
-    return 'ResultRouteArgs{key: $key, nameController: $nameController, ageController: $ageController, weightController: $weightController, heightController: $heightController, activityController: $activityController, temperatureController: $temperatureController}';
+    return 'ResultRouteArgs{key: $key, nameController: $nameController, ageController: $ageController, weightController: $weightController, heightController: $heightController, activityController: $activityController, temperatureController: $temperatureController, gender: $gender}';
   }
 }
 
