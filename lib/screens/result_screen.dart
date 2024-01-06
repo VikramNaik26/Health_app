@@ -56,12 +56,12 @@ class _ResultPageState extends State<ResultPage> {
     ].any((value) => value.isEmpty);
 
     final Map inputDeatails = {
-      'Age:': age,
+      'Age:': '$age years',
       'Gender:': gender,
-      'Weight:': weight,
-      'Height:': height,
+      'Weight:': '$weight kgs',
+      'Height:': '$height cms',
       'Activeness:': activity,
-      'Temp Factor:': temperature,
+      'Temp Factor:': '$temperature °C',
     };
 
     if (anyControllerIsEmpty) {
@@ -75,8 +75,10 @@ class _ResultPageState extends State<ResultPage> {
                 width: 100,
                 height: 100,
                 decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/images/invalid.jpg'))),
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/invalid.jpg'),
+                  ),
+                ),
               ),
               const AppText(
                 text: 'Please fill in all the details',
