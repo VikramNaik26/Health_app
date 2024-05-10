@@ -44,6 +44,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           SizedBox(height: size.height * 0.15),
           FloatingActionButton(
+            backgroundColor: const Color(0xFFAA88FF),
+            shape: const CircleBorder(),
             onPressed: () {
               /* Navigator.push(
                 context,

@@ -64,6 +64,8 @@ class _MainPageState extends State<MainPage> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
+          backgroundColor: const Color(0xFFAA88FF),
+          shape: const CircleBorder(),
           onPressed: () {
             context.router.push(const UserInfoRoute());
           },
